@@ -5,7 +5,11 @@
  * @returns {number}
  */
 function sum(a, b) {
-  return Number(a) + Number(b)
+  try{
+    return Number(a) + Number(b)
+  }catch (e){
+    console.log(e)
+  }
 }
 
 /**
