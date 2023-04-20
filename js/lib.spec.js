@@ -14,6 +14,7 @@ describe("Test suite for testing lib.js", () => {
       }
     });
 
+    
     it("should convert string to number if input parameters is string", () => {
       assert.equal(sum("5", "1"), 6);
       assert.equal(sum(10, "1"), 11);
