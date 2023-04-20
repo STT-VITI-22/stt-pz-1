@@ -25,20 +25,36 @@ describe('Test suite for testing lib.js', () => {
 
   describe('Test suite for testing pow function', () => {
     it('should raising x to the n power', () => {
-      // Write your code here
+      assert.equal(pow(1, 2), 1)
+      assert.equal(pow(-10, 3), -1000)
+      assert.equal(pow(10, 2), 100)
     });
-
 
   });
 
   describe('Test suite for testing removeByName function', () => {
     it('should remove some element from array', () => {
-      // Write your code here
+      const list = ['Alice', 'Bob', 'Charlie'];
+      const nameToRemove = 'Bob';
+      const expected = ['Alice', 'Charlie'];
+      const result = removeByName(list, nameToRemove);
+      assert.equal(arrayEquals(expected, result), true)
     });
 
     it('should not remove element from array', () => {
-      // Write your code here
+      const list = ['Alice', 'Bob', 'Charlie'];
+      const nameToRemove = 'Dave';
+      const expected = ['Alice', 'Bob', 'Charlie'];
+      const result = removeByName(list, nameToRemove);
+      assert.equal(arrayEquals(expected, result), true)
     });
   });
 });
+
+function arrayEquals(a, b) {
+  return Array.isArray(a) &&
+    Array.isArray(b) &&
+    a.length === b.length &&
+    a.every((val, index) => val === b[index]);
+}
 
