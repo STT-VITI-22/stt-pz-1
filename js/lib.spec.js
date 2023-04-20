@@ -7,7 +7,7 @@ describe('Test suite for testing lib.js', () => {
     });
 
     it('should return NaN if one parameter is skipped', () => {
-      assert.equal(sum(1,NaN),NaN)
+      assert.equal(sum(1,Na),NaN)
     });
 
 
