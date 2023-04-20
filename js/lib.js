@@ -4,7 +4,7 @@
  * @param b {number|string}
  * @returns {number}
  */
-function sum(a, b) {
+function sum(a, b) {//done
   return Number(a) + Number(b)
 }
 
@@ -14,7 +14,7 @@ function sum(a, b) {
  * @param n
  * @returns {number}
  */
-function pow(x, n) {
+function pow(x, n) {//done
   let result = 1;
 
   for (let i = 0; i < n; i++) {
@@ -29,7 +29,7 @@ function pow(x, n) {
  * @param n {number}
  * @returns {number}
  */
-function factorial(n) {
+function factorial(n) {//done
   return n ? n * factorial(n - 1) : 1;
 };
 
@@ -38,7 +38,7 @@ function factorial(n) {
  * @param n
  * @returns {*|number}
  */
-function fibonacci(n) {
+function fibonacci(n) { //done
   return (n > 2) ? fibonacci(n - 1) + fibonacci(n - 2) : 1;
 }
 
@@ -48,7 +48,7 @@ function fibonacci(n) {
  * @param name {string}
  * @returns {string[]}
  */
-function removeByName(list, name) {
+function removeByName(list, name) { //done
   let result = [...list]
   let index = result.indexOf(name);
   if (index !== -1) {
@@ -63,7 +63,7 @@ function removeByName(list, name) {
  * @param currentCount {number}
  * @returns {function(): number}
  */
-function makeCounter(currentCount) {
+function makeCounter(currentCount) { //done
   return function () {
     return currentCount++;
   };
@@ -75,7 +75,7 @@ function makeCounter(currentCount) {
  * @returns {number}
  */
 
-function getAsyncTimerId(time) {
+function getAsyncTimerId(time) { //done
   let timerId;
   setTimeout(() => {
     timerId = Math.floor(Date.now() / 1000)
@@ -89,7 +89,7 @@ function getAsyncTimerId(time) {
  * @param x{number}
  * @returns {Promise<number>}
  */
-async function asyncMultiply(x) {
+async function asyncMultiply(x) { //done
   return new Promise(resolve => {
     setTimeout(resolve, 3000, 2 * x);
   });
@@ -100,7 +100,7 @@ async function asyncMultiply(x) {
  * @param url {string}
  * @returns {Promise<unknown>}
  */
-function httpGet(url) {
+function httpGet(url) { //done
 
   return new Promise(function (resolve, reject) {
 
