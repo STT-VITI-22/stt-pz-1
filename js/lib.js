@@ -5,7 +5,7 @@
  * @returns {number}
  */
 function sum(a, b) {
-  return Number(a) + Number(b)
+  return Number(a) + Number(b);
 }
 
 /**
@@ -31,7 +31,7 @@ function pow(x, n) {
  */
 function factorial(n) {
   return n ? n * factorial(n - 1) : 1;
-};
+}
 
 /**
  * This function calculate Fibonacci sequence
@@ -39,7 +39,7 @@ function factorial(n) {
  * @returns {*|number}
  */
 function fibonacci(n) {
-  return (n > 2) ? fibonacci(n - 1) + fibonacci(n - 2) : 1;
+  return n > 2 ? fibonacci(n - 1) + fibonacci(n - 2) : 1;
 }
 
 /**
@@ -49,7 +49,7 @@ function fibonacci(n) {
  * @returns {string[]}
  */
 function removeByName(list, name) {
-  let result = [...list]
+  let result = [...list];
   let index = result.indexOf(name);
   if (index !== -1) {
     result.splice(index, 1);
@@ -78,11 +78,11 @@ function makeCounter(currentCount) {
 function getAsyncTimerId(time) {
   let timerId;
   setTimeout(() => {
-    timerId = Math.floor(Date.now() / 1000)
+    timerId = Math.floor(Date.now() / 1000);
   }, time);
 
-  return timerId
-};
+  return timerId;
+}
 
 /**
  * This function return promise and multiply paraments
@@ -90,10 +90,10 @@ function getAsyncTimerId(time) {
  * @returns {Promise<number>}
  */
 async function asyncMultiply(x) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(resolve, 3000, 2 * x);
   });
-};
+}
 
 /**
  * This function create GET http request to server
@@ -101,11 +101,9 @@ async function asyncMultiply(x) {
  * @returns {Promise<unknown>}
  */
 function httpGet(url) {
-
   return new Promise(function (resolve, reject) {
-
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', url, true);
+    xhr.open("GET", url, true);
 
     xhr.onload = function () {
       if (this.status == 200) {
@@ -123,6 +121,4 @@ function httpGet(url) {
 
     xhr.send();
   });
-
 }
-
