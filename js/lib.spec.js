@@ -36,15 +36,14 @@ describe('Test suite for testing lib.js', () => {
   describe('Test suite for testing removeByName function', () => {
     it('should remove some element from array', () => {
       const list = ['Alice', 'Bob', 'Charlie'];
-      const nameToRemove = 'Bob';
-      const expected = ['Alice', 'Charlie'];
-      const result = removeByName(list, nameToRemove);    
+      const removedEIList = ['Alice', 'Charlie'];
+      assert.deepEqual(removeByName(list, 'Bob'),removedEIList)    
+      
     });
 
     it('should not remove element from array', () => {
     const list = ['Alice', 'Bob', 'Charlie'];
-    const nameToRemove = 'Dave';
-    const result = removeByName(list, nameToRemove);
+    assert.deepEqual(removeByName(list,'Dive'),list);
     });
   });
 });
