@@ -54,7 +54,6 @@ function removeByName(list, name) {
   if (index !== -1) {
     result.splice(index, 1);
   }
-
   return result;
 }
 

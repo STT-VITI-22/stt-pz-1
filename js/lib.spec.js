@@ -23,17 +23,20 @@ describe("Test suite for testing lib.js", () => {
 
   describe("Test suite for testing pow function", () => {
     it("should raising x to the n power", () => {
-      // Write your code here
+      assert.equal(pow(3, 3), 27);
     });
   });
 
   describe("Test suite for testing removeByName function", () => {
     it("should remove some element from array", () => {
-      // Write your code here
+      const list = ["Valentyn", "Dima", "Taras"];
+      const removedElList = ["Valentyn", "Taras"];
+      assert.deepEqual(removeByName(list, "Dima"), removedElList);
     });
 
     it("should not remove element from array", () => {
-      // Write your code here
+      const list = ["Valentyn", "Dima", "Taras"];
+      assert.deepEqual(removeByName(list, "Vlad"), list);
     });
   });
 });
