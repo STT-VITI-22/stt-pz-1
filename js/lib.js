@@ -5,6 +5,9 @@
  * @returns {number}
  */
 function sum(a, b) {
+  // if(typeof a == undefined || typeof b == undefined){
+  //   return NaN
+  // }
   return Number(a) + Number(b)
 }
 

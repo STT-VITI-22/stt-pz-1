@@ -7,7 +7,9 @@ describe('Test suite for testing lib.js', () => {
     });
 
     it('should return NaN if one parameter is skipped', () => {
-      assert.equal(sum(1), NaN)
+      /* NaN is a special value in JavaScript that is not equal to
+      any other value, including NaN itself. */
+      assert.isTrue(isNaN(sum(1)));
     });
 
 
@@ -20,7 +22,7 @@ describe('Test suite for testing lib.js', () => {
 
   describe('Test suite for testing pow function', () => {
     it('should raising x to the n power', () => {
-      // Write your code here
+      assert.equal(pow(2,3),8)
     });
 
 
@@ -28,11 +30,14 @@ describe('Test suite for testing lib.js', () => {
 
   describe('Test suite for testing removeByName function', () => {
     it('should remove some element from array', () => {
-      // Write your code here
+      var list = ["L","I","T","V","I","N"]
+      var anotherList = ["L","I","T","V","I"]
+      assert.deepEqual(removeByName(list,"N"),anotherList)
     });
 
     it('should not remove element from array', () => {
-      // Write your code here
+      var list = ["L","I","T","V","I","N"]
+      assert.deepEqual(removeByName(list,"A"),list)
     });
   });
 });
