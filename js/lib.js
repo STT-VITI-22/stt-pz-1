@@ -5,7 +5,8 @@
  * @returns {number}
  */
 function sum(a, b) {
-  return Number(a) + Number(b)
+
+  return Number(a) + Number(b);
 }
 
 /**
@@ -16,11 +17,16 @@ function sum(a, b) {
  */
 function pow(x, n) {
   let result = 1;
-
-  for (let i = 0; i < n; i++) {
-    result *= x;
+  if(n>0){
+    for (let i = 0; i < n; i++) {
+      result *= x;
+    }}
+  else{
+    for (let i = 0; i > n; i--) {
+      result *= x;
+    }
+    result=1/result;
   }
-
   return result;
 }
 
@@ -30,16 +36,19 @@ function pow(x, n) {
  * @returns {number}
  */
 function factorial(n) {
-  return n ? n * factorial(n - 1) : 1;
-};
-
+  if (n >= 0) {
+    return n ? n * factorial(n - 1) : 1;
+  } else return NaN;
+}
 /**
  * This function calculate Fibonacci sequence
  * @param n
  * @returns {*|number}
  */
 function fibonacci(n) {
-  return (n > 2) ? fibonacci(n - 1) + fibonacci(n - 2) : 1;
+  if(n>0){
+    return (n > 2) ? fibonacci(n - 1) + fibonacci(n - 2) : 1;
+  } else return NaN
 }
 
 /**
@@ -50,11 +59,12 @@ function fibonacci(n) {
  */
 function removeByName(list, name) {
   let result = [...list]
-  let index = result.indexOf(name);
-  if (index !== -1) {
-    result.splice(index, 1);
+  for(let i=result.length;i>0;i--) {
+    let index = result.indexOf(name);
+    if (index !== -1) {
+      result.splice(index, 1);
+    }
   }
-
   return result;
 }
 
@@ -91,7 +101,7 @@ function getAsyncTimerId(time) {
  */
 async function asyncMultiply(x) {
   return new Promise(resolve => {
-    setTimeout(resolve, 3000, 2 * x);
+    setTimeout(resolve, 1000, 2 * x);
   });
 };
 
