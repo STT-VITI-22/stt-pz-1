@@ -69,6 +69,7 @@ function makeCounter(currentCount) {
   };
 }
 
+
 /**
  * This function create async timeout and return unixtime like timer Id
  * @param time {number}
@@ -83,6 +84,7 @@ function getAsyncTimerId(time) {
 
   return timerId
 };
+
 
 /**
  * This function return promise and multiply paraments
