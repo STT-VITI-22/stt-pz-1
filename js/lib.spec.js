@@ -107,7 +107,7 @@ describe('Test suite for testing lib.js', () => {
   describe('Test suite for testing httpGet function', function() {
     it('should return a Promise object', function() {
       let tmp = httpGet("www.google.com");
-      assert.isString(tmp);
+      assert.instanceOf(tmp, Promise);
     });
     it('should return the response on a successful request', function() {
       httpGet('https://jsonplaceholder.typicode.com/todos/1')
