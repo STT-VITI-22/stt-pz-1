@@ -126,3 +126,7 @@ function httpGet(url) {
 
 }
 
+function getName(name){
+  return "Hello, " + name;
+}
+
