@@ -126,3 +126,14 @@ function httpGet(url) {
 
 }
 
+
+
+/**
+ * Get sum of two numbers
+ * @param a
+ * @param b
+ * @returns {number}
+ */
+async function plusTwoNumbers(a, b) {
+  return Number(a) + Number(b);
+};
