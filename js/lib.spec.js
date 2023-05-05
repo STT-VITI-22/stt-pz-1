@@ -35,5 +35,12 @@ describe('Test suite for testing lib.js', () => {
       // Write your code here
     });
   });
+
+  describe('Test suite for testing plusTwoNumbers function', () => {
+    it('should add two number', () => {
+      // Write your code here
+    });
+
+  });
 });
 
