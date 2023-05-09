@@ -35,5 +35,15 @@ describe('Test suite for testing lib.js', () => {
       // Write your code here
     });
   });
+
+  describe('Test suite for testing removeByName function', () => {
+    it('should remove some element from array', () => {
+      // Write your code here
+    });
+
+    it('should not remove element from array', () => {
+      // Write your code here
+    });
+  });
 });
 

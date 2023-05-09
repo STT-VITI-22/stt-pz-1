@@ -126,3 +126,18 @@ function httpGet(url) {
 
 }
 
+/**
+ * this function do something
+ * @param x
+ * @param n
+ * @returns {number}
+ */
+function pow2(x, n) {
+  let result = 1;
+
+  for (let i = 0; i < n; i++) {
+    result *= x;
+  }
+
+  return result;
+}
