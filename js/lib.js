@@ -76,12 +76,16 @@ function makeCounter(currentCount) {
  */
 
 function getAsyncTimerId(time) {
-  let timerId;
-  setTimeout(() => {
-    timerId = Math.floor(Date.now() / 1000)
-  }, time);
-
-  return timerId
+  return new Promise((resolve, reject) => {
+      try {
+          setTimeout(() => {
+              const timerId = Math.floor(Date.now() / 1000);
+              resolve(timerId);
+          }, time);
+      } catch (error) {
+          reject(error);
+      }
+  });
 };
 
 /**
@@ -125,4 +129,3 @@ function httpGet(url) {
   });
 
 }
-
