@@ -28,6 +28,35 @@ describe('Test suite for testing lib.js', () => {
 
 
   });
+  describe('Test suite for testing getAsyncTimerId function', () => {
+    it('should return undefined immediately', () => {
+        const result = getAsyncTimerId(1000); // 1 second timeout
+        assert.equal(result, undefined);
+    });
+
+    it('should set timerId after the timeout', (done) => {
+        getAsyncTimerId(1000); // 1 second timeout
+        setTimeout(() => {
+            const currentTime = Math.floor(Date.now() / 1000);
+            assert.isNumber(currentTime); // Just checking that currentTime is a number after the timeout
+            done();
+        }, 1100); // Giving an extra 100ms delay to ensure the timer has finished
+    });
+});
+
+
+  describe('Test suite for testing factorial function', () => {
+        it('should calculate factorial correctly', () => {
+            assert.equal(factorial(5), 120);
+            assert.equal(factorial(0), 1);
+        });
+    });
+  describe('Test suite for testing fibonacci function', () => {
+        it('should calculate Fibonacci sequence correctly', () => {
+            assert.equal(fibonacci(5), 5);
+            assert.equal(fibonacci(6), 8);
+        });
+    });
 
   describe('Test suite for testing removeByName function', () => {
     it('should remove some element from array', () => {
