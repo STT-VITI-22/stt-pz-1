@@ -28,6 +28,26 @@ describe('Test suite for testing lib.js', () => {
 
   });
 
+  describe('Test suite for testing factorial function', () => {
+    it('should calculate factorial of a number', () => {
+      expect(factorial(5)).toBe(120);
+    });
+  
+    it('should handle factorial of 0', () => {
+      expect(factorial(0)).toBe(1);
+    });
+  });
+
+  describe('Test suite for testing fibonacci function', () => {
+    it('should calculate Fibonacci sequence', () => {
+      expect(fibonacci(6)).toBe(8);
+    });
+  
+    it('should handle small values', () => {
+      expect(fibonacci(1)).toBe(1);
+    });
+  });
+
   describe('Test suite for testing removeByName function', () => {
     it('should remove some element from array', () => {
       const initialList = ['Alice', 'Bob', 'Charlie'];
@@ -46,6 +66,26 @@ describe('Test suite for testing lib.js', () => {
       const newList = removeByName(initialList, nameToRemove);
 
       assert.deepEqual(newList, initialList); 
+    });
+  });
+
+  describe('Test suite for testing httpGet function', () => {
+    it('should make an HTTP GET request and resolve with the response', async () => {
+      const url = 'https://example.com'; // Замініть на URL, який ви хочете протестувати
+      const response = await httpGet(url);
+      expect(response).toBeDefined();
+    });
+  
+    it('should handle errors and reject with an error', async () => {
+      const url = 'https://nonexistent-url.com'; // Неіснуючий URL
+      await expect(httpGet(url)).rejects.toThrowError();
+    });
+  });
+
+  describe('Test suite for testing asyncMultiply function', () => {
+    it('should multiply a number asynchronously', async () => {
+      const result = await asyncMultiply(3);
+      expect(result).toBe(6);
     });
   });
 });
