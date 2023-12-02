@@ -27,13 +27,13 @@ describe('Test suite for testing lib.js', () => {
 
   describe('Function removeByName', () => {
     it('should remove an existing element from the array by name', () => {
-        let list = ["John", "Jane", "Doe"];
-        assert.deepEqual(removeByName(list, "Jane"), ["John", "Doe"]);
+        let list = ["Sanya", "Valera", "Kolya"];
+        assert.deepEqual(removeByName(list, "Valera"), ["Sanya", "Kolya"]);
     });
 
     it('should not remove an element if the name does not exist in the array', () => {
-        let list = ["John", "Jane", "Doe"];
-        assert.deepEqual(removeByName(list, "Smith"), ["John", "Jane", "Doe"]);
+        let list = ["Sanya", "Valera", "Kolya"];
+        assert.deepEqual(removeByName(list, "Volodya"), ["Sanya", "Valera", "Kolya"]);
     });
 });
 
@@ -83,7 +83,6 @@ describe('Test suite for testing lib.js', () => {
 
   describe('Function asyncMultiply', function() {
     this.timeout(4000); 
-
     it('should multiply a number by 2 asynchronously', async () => {
         const result = await asyncMultiply(5);
         assert.equal(result, 10);
@@ -92,7 +91,7 @@ describe('Test suite for testing lib.js', () => {
 
   describe('Function httpGet', () => {
     it('should return a promise', () => {
-        const result = httpGet('someurl.com');
+        const result = httpGet('https://prometheus.org.ua/');
         assert.instanceOf(result, Promise);
     });
   });
