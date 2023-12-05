@@ -20,9 +20,17 @@ describe('Test suite for testing lib.js', () => {
 
   describe('Test suite for testing pow function', () => {
     it('should raising x to the n power', () => {
+<<<<<<< HEAD
       assert.equal(pow(2, 3), 8)
       assert.equal(pow(5, 2), 25)
       assert.equal(pow(10, 0), 1)
+=======
+      it('should raise x to the n power', () => {
+        assert.equal(pow(2, 3), 8)
+        assert.equal(pow(5, 2), 25)
+        assert.equal(pow(10, 0), 1)
+      });
+>>>>>>> d472dffad02edfe75a25b4ec7d6d73594e31376b
     });
 
 
@@ -36,9 +44,17 @@ describe('Test suite for testing lib.js', () => {
   }
   describe('Test suite for testing removeByName function', () => {
     it('should remove some element from array', () => {
+<<<<<<< HEAD
       const array = ['apple', 'banana', 'orange'];
       removeByName(array, 'banana');
       assert.deepEqual(array, ['apple', 'orange']);
+=======
+       
+        const array = ['apple', 'banana', 'orange'];
+        removeByName(array, 'banana');
+        assert.deepEqual(array, ['apple', 'orange']);
+      
+>>>>>>> d472dffad02edfe75a25b4ec7d6d73594e31376b
     });
 
     it('should not remove element from array', () => {
