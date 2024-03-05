@@ -39,7 +39,7 @@ function factorial(n) {
  * @returns {*|number}
  */
 function fibonacci(n) {
-  return (n > 2) ? fibonacci(n - 1) + fibonacci(n - 2) : 1;
+  return (n < 2) ? n : fibonacci(n - 1) + fibonacci(n - 2);
 }
 
 /**
@@ -123,6 +123,7 @@ function httpGet(url) {
 
     xhr.send();
   });
+w
 
-}
+}module.exports  = {sum, pow, factorial, asyncMultiply, fibonacci, getAsyncTimerId, httpGet, makeCounter, removeByName}
 
