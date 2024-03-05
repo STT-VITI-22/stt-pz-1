@@ -9,19 +9,18 @@
   <script src="https://unpkg.com/chai/chai.js"></script>
   <script src="https://unpkg.com/mocha/mocha.js"></script>
   <script>
-    var assert = chai.assert;
+    // var assert = chai.assert;
   </script>
 </head>
 <body>
 <div id="mocha"></div>
-
-
 <script class="mocha-init">
   mocha.setup('bdd');
   mocha.checkLeaks();
 </script>
 <script src="./js/lib.js"></script>
-<script src="./js/lib.spec.js"></script>
+<script src="./js/lib.spec.js">
+</script>
 <script class="mocha-exec">
   mocha.run();
 </script>
