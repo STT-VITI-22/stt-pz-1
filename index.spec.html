@@ -8,8 +8,12 @@
 
   <script src="https://unpkg.com/chai/chai.js"></script>
   <script src="https://unpkg.com/mocha/mocha.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mocha@9.2.2/dist/mocha.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chai@4.3.6/chai.min.js"></script>
+
   <script>
-    var assert = chai.assert;
+     var assert = chai.assert;
   </script>
 </head>
 <body>
@@ -21,7 +25,8 @@
   mocha.checkLeaks();
 </script>
 <script src="./js/lib.js"></script>
-<script src="./js/lib.spec.js"></script>
+<script src="./js/lib.spec.js">
+</script>
 <script class="mocha-exec">
   mocha.run();
 </script>
