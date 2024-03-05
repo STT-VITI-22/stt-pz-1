@@ -31,7 +31,7 @@ function pow(x, n) {
  */
 function factorial(n) {
   return n ? n * factorial(n - 1) : 1;
-};
+}
 
 /**
  * This function calculate Fibonacci sequence
@@ -82,7 +82,7 @@ function getAsyncTimerId(time) {
   }, time);
 
   return timerId
-};
+}
 
 /**
  * This function return promise and multiply paraments
@@ -93,7 +93,7 @@ async function asyncMultiply(x) {
   return new Promise(resolve => {
     setTimeout(resolve, 3000, 2 * x);
   });
-};
+}
 
 /**
  * This function create GET http request to server
