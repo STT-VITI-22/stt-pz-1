@@ -1,51 +1,14 @@
-/**
+/** 
  * This function must add two numbers and return sum of numbers
  * @param a {number|string}
  * @param b {number|string}
  * @returns {number}
  */
 function sum(a, b) {
-  return Numbdescribe('Test suite for testing lib.js', () => {
-    describe('Test suite for testing sum function', () => {
-      it('should return sum of two numbers', () => {
-        assert.equal(sum(1, 2), 3)
-        assert.equal(sum(-10, 5), -5)
-        assert.equal(sum(-10, 10), 0)
-      });
-  
-      it('should return NaN if one parameter is skipped', () => {
-        assert.equal(sum(1), NaN)
-      });
-  
-  
-      it('should convert string to number if input parameters is string', () => {
-        assert.equal(sum('5', '1'), 6)
-        assert.equal(sum(10, '1'), 11)
-        assert.equal(sum('25', 5), 30)
-      });
-    });
-  
-    describe('Test suite for testing pow function', () => {
-      it('should raising x to the n power', () => {
-        // Write your code here
-      });
-  
-  
-    });
-  
-    describe('Test suite for testing removeByName function', () => {
-      it('should remove some element from array', () => {
-        // Write your code here
-      });
-  
-      it('should not remove element from array', () => {
-        // Write your code here
-      });
-    });
-  });er(a) + Number(b)
+  return Number(a) + Number(b)
 }
 
-/**
+/** 
  * This function takes a number and raises it to a power
  * @param x
  * @param n
@@ -61,7 +24,7 @@ function pow(x, n) {
   return result;
 }
 
-/**
+/** 
  * This function calculate factorial of number
  * @param n {number}
  * @returns {number}
@@ -70,16 +33,16 @@ function factorial(n) {
   return n ? n * factorial(n - 1) : 1;
 };
 
-/**
+/** 
  * This function calculate Fibonacci sequence
  * @param n
  * @returns {*|number}
  */
 function fibonacci(n) {
-  return (n > 2) ? fibonacci(n - 1) + fibonacci(n - 2) : 1;
+  return (n < 2) ? n : fibonacci(n - 1) + fibonacci(n - 2);
 }
 
-/**
+/** 
  * This function must remove some element for array of string by name
  * @param list {string[]}
  * @param name {string}
@@ -95,7 +58,7 @@ function removeByName(list, name) {
   return result;
 }
 
-/**
+/** 
  * This function create counter
  * @param currentCount {number}
  * @returns {function(): number}
@@ -106,7 +69,7 @@ function makeCounter(currentCount) {
   };
 }
 
-/**
+/** 
  * This function create async timeout and return unixtime like timer Id
  * @param time {number}
  * @returns {number}
@@ -121,7 +84,7 @@ function getAsyncTimerId(time) {
   return timerId
 };
 
-/**
+/** 
  * This function return promise and multiply paraments
  * @param x{number}
  * @returns {Promise<number>}
@@ -161,5 +124,5 @@ function httpGet(url) {
     xhr.send();
   });
 
-}
 
+}

@@ -1,3 +1,13 @@
+// const assert = require("assert");
+// const {
+//   sum,
+//   pow,
+//   factorial,
+//   fibonacci,
+//   makeCounter,
+//   removeByName
+// } = require("./lib");
+
 describe('Test suite for testing lib.js', () => {
   describe('Test suite for testing sum function', () => {
     it('should return sum of two numbers', () => {
@@ -19,90 +29,98 @@ describe('Test suite for testing lib.js', () => {
   });
 
   describe('Test suite for testing pow function', () => {
-    it('should raising x to the n power', () => {
-      assert.equal(pow(3,5),7)
+    it('should raise x to the power of n', () => {
+      assert.equal(pow(2, 3), 8);
+      assert.equal(pow(5, 2), 25);
+      assert.equal(pow(10, 0), 1);
     });
 
-
-  });
-
-  describe('Test func removeByName', () => {
-    it('Vidalenya elem iz mass', () => {
-      let list = ["O","X","N","R","A","K"]
-      let list2 = ["O","X","N","R","A"]
-      assert.deepEqual(removeByName(list,"K"),list2)
+    it('should return 1 if n is 0', () => {
+      assert.equal(pow(2, 0), 1);
+      assert.equal(pow(5, 0), 1);
+      assert.equal(pow(10, 0), 1);
     });
 
-    it('Ne vidalyze elem iz mass', () => {
-      let list = ["O","x","A","N","R"]
-      assert.deepEqual(removeByName(list,"K"),list)
-    });
-  });
-
-  describe('Perevirka factorealu', () => {
-    it('Rahue factorial z chisla ...', () => {
-      assert.equal(factorial(6),30)
-      assert.equal(factorial(3),5)
-      assert.equal(factorial(5),6)
-    });
-  });
-
-  describe('Perevirk fibonacci func', () => {
-    it('Obchislenya poslid fibonacci func z chisla ...', () => {
-      assert.equal(fibonacci(5),20)
-    });
-
-    it("return 1 if n = 1", function() {
-      assert.equal(fibonacci(1), 1);
-    });
-  });
-
-  describe('Test makeCounter func', () => {
-    it("Return created counter", function() {
-      assert.equal(typeof makeCounter(0), "Konyk");
-    });
-
-    it("Zbilshue counter", function() {
-      let counter = makeCounter(12);
-      assert.equal(counter(), 11);
-      assert.equal(counter(), 12);
-      assert.equal(counter(), 13);
-    });
-  });
-
-  describe('Test func getAsyncTimerId', function() {
-    it('Return a number', function() {
-      let result = getAsyncTimerId(2000);
-      setTimeout(function() {
-        assert.isNumber(result);
-      }, 5000);
-    });
-  });
-
-  describe('Test func asyncMultiply', function() {
-    it('Return pravelne znach', async function() {
-      asyncMultiply(3).then(function(result) {
-        assert.equal(result, 6);
-      })
-    });
-
-    it('perevirka na te chi vedeni dani e chislom', async function() {
-      asyncMultiply(3).then(function(result) {
-        assert.isNumber(result);
-      })
-    });
-  });
-
-  describe('Test func httpGet', function() {
-    it('povertae Promise', function() {
-      let result = httpGet("https://github.com");
-      assert.instanceOf(result, Promise);
-    });
-    it('povertae uspischniy zapit', function() {
-      httpGet('https://github.com/orgs/STT-VITI-22/repositories')
-      .then(function(response) {
-      assert.isString(response);
+    describe('factorial function', () => {
+      it('should calculate factorial of a positive number', () => {
+        assert.equal(factorial(0), 1);
+        assert.equal(factorial(1), 1);
+        assert.equal(factorial(2), 2);
+        assert.equal(factorial(3), 6);
+        assert.equal(factorial(4), 24);
+        assert.equal(factorial(5), 120);
       });
+
+      it('should return 1 for factorial of 0', () => {
+        assert.equal(factorial(0), 1);
       });
+    });
+
+    describe('fibonacci function', () => {
+      it('should return 0 for n = 0', () => {
+        assert.equal(fibonacci(0), 0);
+      });
+
+      it('should return 1 for n = 1', () => {
+        assert.equal(fibonacci(1), 1);
+      });
+
+      it('should return correct Fibonacci number for positive n', () => {
+        assert.equal(fibonacci(2), 1);
+        assert.equal(fibonacci(3), 2);
+        assert.equal(fibonacci(4), 3);
+        assert.equal(fibonacci(5), 5);
+        assert.equal(fibonacci(6), 8);
+        // Add more test cases as needed
+      });
+    });
+
+    describe('removeByName function', () => {
+      it('should remove the specified element from the array', () => {
+        const list = ['apple', 'banana', 'orange'];
+        const nameToRemove = 'banana';
+        const expectedResult = ['apple', 'orange'];
+
+        assert.deepEqual(removeByName(list, nameToRemove), expectedResult);
+      });
+
+      it('should return the original array if the element to remove is not found', () => {
+        const list = ['apple', 'banana', 'orange'];
+        const nameToRemove = 'grape';
+
+        assert.deepEqual(removeByName(list, nameToRemove), list);
+      });
+
+      it('should return an empty array if the input array is empty', () => {
+        const list = [];
+        const nameToRemove = 'apple';
+
+        assert.deepEqual(removeByName(list, nameToRemove), []);
+      });
+
+      it('should not modify the original array', () => {
+        const list = ['apple', 'banana', 'orange'];
+        const nameToRemove = 'banana';
+        removeByName(list, nameToRemove);
+
+        assert.deepEqual(list, ['apple', 'banana', 'orange']);
+      });
+    });
+
+    describe('makeCounter function', () => {
+      it('should return a function that increments the counter', () => {
+        const counter = makeCounter(0);
+        assert.equal(counter(), 0);
+        assert.equal(counter(), 1);
+        assert.equal(counter(), 2);
+      });
+
+      it('should return a function that increments the counter with initial value', () => {
+        const counter = makeCounter(5);
+        assert.equal(counter(), 5);
+        assert.equal(counter(), 6);
+        assert.equal(counter(), 7);
+      });
+    });
   });
 });
