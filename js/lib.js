@@ -5,6 +5,10 @@
  * @returns {number}
  */
 function sum(a, b) {
+  if (arguments.length === 1) {
+    return NaN;
+  }
+  //return a + b;
   return Number(a) + Number(b)
 }
 
@@ -39,7 +43,12 @@ function factorial(n) {
  * @returns {*|number}
  */
 function fibonacci(n) {
-  return (n > 2) ? fibonacci(n - 1) + fibonacci(n - 2) : 1;
+  if (n < 2) {
+    return n;
+  }
+  return fibonacci(n - 1) + fibonacci(n - 2);
+  //Wrong logic
+  // return (n > 2) ? fibonacci(n - 1) + fibonacci(n - 2) : 1;
 }
 
 /**
@@ -49,14 +58,31 @@ function fibonacci(n) {
  * @returns {string[]}
  */
 function removeByName(list, name) {
-  let result = [...list]
+
+
+  if (!Array.isArray(list)) {
+    console.error('Expected an array for list, received:', list);
+    return []; // or return list to return the input unchanged
+  }
+
+  let result = [...list];
   let index = result.indexOf(name);
   if (index !== -1) {
     result.splice(index, 1);
   }
 
   return result;
+
+  //Wrong logic
+  // let result = [...list]
+  // let index = result.indexOf(name);
+  // if (index !== -1) {
+  //   result.splice(index, 1);
+  // }
+  //
+  // return result;
 }
+
 
 /**
  * This function create counter
@@ -125,4 +151,7 @@ function httpGet(url) {
   });
 
 }
+
+// module.exports  = {sum, pow, factorial, asyncMultiply, fibonacci, getAsyncTimerId, httpGet, makeCounter, removeByName}
+
 
