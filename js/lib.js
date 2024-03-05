@@ -1,5 +1,4 @@
-/**
- * This function must add two numbers and return sum of numbers
+/* This function must add two numbers and return sum of numbers
  * @param a {number|string}
  * @param b {number|string}
  * @returns {number}
@@ -8,8 +7,8 @@ function sum(a, b) {
   return Number(a) + Number(b)
 }
 
-/**
- * This function takes a number and raises it to a power
+
+ /* This function takes a number and raises it to a power
  * @param x
  * @param n
  * @returns {number}
@@ -24,8 +23,7 @@ function pow(x, n) {
   return result;
 }
 
-/**
- * This function calculate factorial of number
+/* This function calculate factorial of number
  * @param n {number}
  * @returns {number}
  */
@@ -33,17 +31,15 @@ function factorial(n) {
   return n ? n * factorial(n - 1) : 1;
 };
 
-/**
- * This function calculate Fibonacci sequence
+/* This function calculate Fibonacci sequence
  * @param n
  * @returns {*|number}
  */
 function fibonacci(n) {
-  return (n > 2) ? fibonacci(n - 1) + fibonacci(n - 2) : 1;
+  return (n < 2) ? n : fibonacci(n - 1) + fibonacci(n - 2);
 }
 
-/**
- * This function must remove some element for array of string by name
+/* This function must remove some element for array of string by name
  * @param list {string[]}
  * @param name {string}
  * @returns {string[]}
@@ -58,8 +54,7 @@ function removeByName(list, name) {
   return result;
 }
 
-/**
- * This function create counter
+/* This function create counter
  * @param currentCount {number}
  * @returns {function(): number}
  */
@@ -69,8 +64,7 @@ function makeCounter(currentCount) {
   };
 }
 
-/**
- * This function create async timeout and return unixtime like timer Id
+/* This function create async timeout and return unixtime like timer Id
  * @param time {number}
  * @returns {number}
  */
@@ -84,8 +78,7 @@ function getAsyncTimerId(time) {
   return timerId
 };
 
-/**
- * This function return promise and multiply paraments
+/* This function return promise and multiply paraments
  * @param x{number}
  * @returns {Promise<number>}
  */
@@ -124,5 +117,5 @@ function httpGet(url) {
     xhr.send();
   });
 
-}
 
+}
