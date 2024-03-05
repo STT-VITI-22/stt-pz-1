@@ -13,9 +13,9 @@
   "author": "Manzhai Heorhii",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/STT-VITI-22/stt-pz-1/issues"
+    "url": "https://github.com/ManzhaiHeorhii/stt-pz-1/issues"
   },
-  "homepage": "https://github.com/STT-VITI-22/stt-pz-1#readme",
+  "homepage": "https://github.com/ManzhaiHeorhii/stt-pz-1#readme",
   "dependencies": {
     "chai": "^5.1.0",
     "mocha": "^10.3.0"
