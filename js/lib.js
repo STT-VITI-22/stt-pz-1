@@ -24,6 +24,8 @@ function pow(x, n) {
   return result;
 }
 
+
+
 /**
  * This function calculate factorial of number
  * @param n {number}
@@ -33,6 +35,8 @@ function factorial(n) {
   return n ? n * factorial(n - 1) : 1;
 };
 
+
+
 /**
  * This function calculate Fibonacci sequence
  * @param n
@@ -41,6 +45,8 @@ function factorial(n) {
 function fibonacci(n) {
   return (n > 2) ? fibonacci(n - 1) + fibonacci(n - 2) : 1;
 }
+  
+
 
 /**
  * This function must remove some element for array of string by name
