@@ -17,7 +17,7 @@
 ### Directory Structure
 
 ```
-├── stt-pz-1
+├ stt-pz-1
 │   ├── js
 │   │   ├── lib.js
 │   │   ├── lib.spec.js
