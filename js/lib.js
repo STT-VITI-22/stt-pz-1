@@ -76,12 +76,12 @@ function makeCounter(currentCount) {
  */
 
 function getAsyncTimerId(time) {
-  let timerId;
-  setTimeout(() => {
-    timerId = Math.floor(Date.now() / 1000)
-  }, time);
-
-  return timerId
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const timerId = Math.floor(Date.now() / 1000);
+      resolve(timerId);
+    }, time);
+  });
 };
 
 /**
@@ -89,7 +89,7 @@ function getAsyncTimerId(time) {
  * @param x{number}
  * @returns {Promise<number>}
  */
-async function asyncMultiply(x) {
+function asyncMultiply(x) {
   return new Promise(resolve => {
     setTimeout(resolve, 3000, 2 * x);
   });
