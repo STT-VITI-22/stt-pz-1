@@ -4,8 +4,8 @@
  * @param b {number|string}
  * @returns {number}
  */
-function sum(a, b) {
-  return Number(a) + Number(b)
+export function sum(a, b) {
+  return Number(a) + Number(b);
 }
 
 /**
@@ -14,7 +14,7 @@ function sum(a, b) {
  * @param n
  * @returns {number}
  */
-function pow(x, n) {
+export function pow(x, n) {
   let result = 1;
 
   for (let i = 0; i < n; i++) {
@@ -29,17 +29,17 @@ function pow(x, n) {
  * @param n {number}
  * @returns {number}
  */
-function factorial(n) {
+export function factorial(n) {
   return n ? n * factorial(n - 1) : 1;
-};
+}
 
 /**
  * This function calculate Fibonacci sequence
  * @param n
  * @returns {*|number}
  */
-function fibonacci(n) {
-  return (n > 2) ? fibonacci(n - 1) + fibonacci(n - 2) : 1;
+export function fibonacci(n) {
+  return n > 2 ? fibonacci(n - 1) + fibonacci(n - 2) : 1;
 }
 
 /**
@@ -48,8 +48,8 @@ function fibonacci(n) {
  * @param name {string}
  * @returns {string[]}
  */
-function removeByName(list, name) {
-  let result = [...list]
+export function removeByName(list, name) {
+  let result = [...list];
   let index = result.indexOf(name);
   if (index !== -1) {
     result.splice(index, 1);
@@ -63,7 +63,7 @@ function removeByName(list, name) {
  * @param currentCount {number}
  * @returns {function(): number}
  */
-function makeCounter(currentCount) {
+export function makeCounter(currentCount) {
   return function () {
     return currentCount++;
   };
@@ -74,36 +74,33 @@ function makeCounter(currentCount) {
  * @param time {number}
  * @returns {number}
  */
-
-function getAsyncTimerId(time) {
+export function getAsyncTimerId(time) {
   let timerId;
   setTimeout(() => {
-    timerId = Math.floor(Date.now() / 1000)
+    timerId = Math.floor(Date.now() / 1000);
   }, time);
 
-  return timerId
-};
+  return timerId;
+}
 
 /**
- * This function return promise and multiply paraments
- * @param x{number}
+ * This function return promise and multiply parameters
+ * @param x {number}
  * @returns {Promise<number>}
  */
-async function asyncMultiply(x) {
-  return new Promise(resolve => {
+export async function asyncMultiply(x) {
+  return new Promise((resolve) => {
     setTimeout(resolve, 3000, 2 * x);
   });
-};
+}
 
 /**
  * This function create GET http request to server
  * @param url {string}
  * @returns {Promise<unknown>}
  */
-function httpGet(url) {
-
+export function httpGet(url) {
   return new Promise(function (resolve, reject) {
-
     let xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
 
@@ -118,11 +115,9 @@ function httpGet(url) {
     };
 
     xhr.onerror = function () {
-      reject(new Error("Network Error"));
+      reject(new Error('Network Error'));
     };
 
     xhr.send();
   });
-
 }
-
