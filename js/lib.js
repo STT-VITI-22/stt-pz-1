@@ -1,128 +1,93 @@
 /**
- * This function must add two numbers and return sum of numbers
- * @param a {number|string}
- * @param b {number|string}
+ * This function adds two numbers or numeric strings and returns their sum.
+ * @param {number|string} a
+ * @param {number|string} b
  * @returns {number}
  */
-function sum(a, b) {
-  return Number(a) + Number(b)
-}
+const sum = (a, b) => parseFloat(a) + parseFloat(b);
 
 /**
- * This function takes a number and raises it to a power
- * @param x
- * @param n
+ * This function raises a number to a power using recursion.
+ * @param {number} x
+ * @param {number} n
  * @returns {number}
  */
-function pow(x, n) {
+const pow = (x, n) => (n === 0 ? 1 : x * pow(x, n - 1));
+
+/**
+ * This function calculates the factorial of a number using iteration.
+ * @param {number} n
+ * @returns {number}
+ */
+const factorial = (n) => {
   let result = 1;
-
-  for (let i = 0; i < n; i++) {
-    result *= x;
+  for (let i = 2; i <= n; i++) {
+    result *= i;
   }
-
   return result;
-}
-
-/**
- * This function calculate factorial of number
- * @param n {number}
- * @returns {number}
- */
-function factorial(n) {
-  return n ? n * factorial(n - 1) : 1;
 };
 
 /**
- * This function calculate Fibonacci sequence
- * @param n
- * @returns {*|number}
+ * This function calculates the nth Fibonacci number using iteration.
+ * @param {number} n
+ * @returns {number}
  */
-function fibonacci(n) {
-  return (n > 2) ? fibonacci(n - 1) + fibonacci(n - 2) : 1;
-}
+const fibonacci = (n) => {
+  if (n <= 0) return 0;
+  if (n === 1) return 1;
+
+  let prev = 0,
+    curr = 1;
+  for (let i = 2; i <= n; i++) {
+    const temp = curr;
+    curr += prev;
+    prev = temp;
+  }
+  return curr;
+};
 
 /**
- * This function must remove some element for array of string by name
- * @param list {string[]}
- * @param name {string}
+ * This function removes an element by name from an array of strings.
+ * @param {string[]} list
+ * @param {string} name
  * @returns {string[]}
  */
-function removeByName(list, name) {
-  let result = [...list]
-  let index = result.indexOf(name);
-  if (index !== -1) {
-    result.splice(index, 1);
-  }
-
-  return result;
-}
+const removeByName = (list, name) => list.filter((item) => item !== name);
 
 /**
- * This function create counter
- * @param currentCount {number}
+ * This function creates a counter and returns a closure to increment it.
+ * @param {number} currentCount
  * @returns {function(): number}
  */
-function makeCounter(currentCount) {
-  return function () {
-    return currentCount++;
-  };
-}
+const makeCounter = (currentCount) => () => currentCount++;
 
 /**
- * This function create async timeout and return unixtime like timer Id
- * @param time {number}
- * @returns {number}
- */
-
-function getAsyncTimerId(time) {
-  let timerId;
-  setTimeout(() => {
-    timerId = Math.floor(Date.now() / 1000)
-  }, time);
-
-  return timerId
-};
-
-/**
- * This function return promise and multiply paraments
- * @param x{number}
+ * This function creates an async timeout and returns a Promise resolving to a Unix timestamp.
+ * @param {number} time
  * @returns {Promise<number>}
  */
-async function asyncMultiply(x) {
-  return new Promise(resolve => {
-    setTimeout(resolve, 3000, 2 * x);
-  });
-};
+const getAsyncTimerId = (time) =>
+  new Promise((resolve) =>
+    setTimeout(() => resolve(Math.floor(Date.now() / 1000)), time)
+  );
 
 /**
- * This function create GET http request to server
- * @param url {string}
- * @returns {Promise<unknown>}
+ * This function returns a promise that resolves to the double of the input number after 3 seconds.
+ * @param {number} x
+ * @returns {Promise<number>}
  */
-function httpGet(url) {
+const asyncMultiply = (x) =>
+  new Promise((resolve) => setTimeout(() => resolve(x * 2), 3000));
 
-  return new Promise(function (resolve, reject) {
-
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', url, true);
-
-    xhr.onload = function () {
-      if (this.status == 200) {
-        resolve(this.response);
-      } else {
-        let error = new Error(this.statusText);
-        error.code = this.status;
-        reject(error);
-      }
-    };
-
-    xhr.onerror = function () {
-      reject(new Error("Network Error"));
-    };
-
-    xhr.send();
-  });
-
-}
-
+/**
+ * This function performs a GET HTTP request to the given URL and returns a Promise.
+ * @param {string} url
+ * @returns {Promise<any>}
+ */
+const httpGet = async (url) => {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`${response.status}: ${response.statusText}`);
+  }
+  return response.json();
+};
