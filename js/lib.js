@@ -30,8 +30,11 @@ function pow(x, n) {
  * @returns {number}
  */
 function factorial(n) {
-  return n ? n * factorial(n - 1) : 1;
-};
+  if (n < 0) throw new Error("Factorial is not defined for negative numbers");
+  if (!Number.isInteger(n)) throw new Error("Factorial is only defined for integers");
+
+  return n === 0 ? 1 : n * factorial(n - 1);
+}
 
 /**
  * This function calculate Fibonacci sequence
@@ -39,7 +42,11 @@ function factorial(n) {
  * @returns {*|number}
  */
 function fibonacci(n) {
-  return (n > 2) ? fibonacci(n - 1) + fibonacci(n - 2) : 1;
+  if (!Number.isInteger(n)) throw new Error("Fibonacci is only defined for integers");
+  if (n < 0) throw new Error("Fibonacci is not defined for negative numbers");
+  if (n === 0) return 0; // Fibonacci(0) = 0
+  if (n === 1) return 1; // Fibonacci(1) = 1
+  return fibonacci(n - 1) + fibonacci(n - 2);
 }
 
 /**
@@ -65,7 +72,7 @@ function removeByName(list, name) {
  */
 function makeCounter(currentCount) {
   return function () {
-    return currentCount++;
+    return ++currentCount;
   };
 }
 
@@ -75,14 +82,14 @@ function makeCounter(currentCount) {
  * @returns {number}
  */
 
-function getAsyncTimerId(time) {
-  let timerId;
-  setTimeout(() => {
-    timerId = Math.floor(Date.now() / 1000)
-  }, time);
-
-  return timerId
-};
+async function getAsyncTimerId(time) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const timerId = Math.floor(Date.now() / 1000);
+      resolve(timerId);
+    }, time);
+  });
+}
 
 /**
  * This function return promise and multiply paraments

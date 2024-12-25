@@ -1,28 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <title>Mocha Tests</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="https://unpkg.com/mocha/mocha.css"/>
-
-  <script src="https://unpkg.com/chai/chai.js"></script>
-  <script src="https://unpkg.com/mocha/mocha.js"></script>
-  <script>
-    var assert = chai.assert;
-  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit Tests</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mocha/mocha.css">
 </head>
 <body>
-<div id="mocha"></div>
 
+<div id="mocha" ></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/8.0.1/mocha.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chai/4.2.0/chai.min.js"></script>
 
-<script class="mocha-init">
+<script>
   mocha.setup('bdd');
-  mocha.checkLeaks();
+  const assert = chai.assert;
 </script>
-<script src="./js/lib.js"></script>
-<script src="./js/lib.spec.js"></script>
-<script class="mocha-exec">
+
+<script type="application/javascript" src="./js/lib.js"></script>
+<script  type="application/javascript" src="./js/lib.spec.js"></script>
+
+<script>
   mocha.run();
 </script>
 </body>
