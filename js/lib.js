@@ -54,7 +54,7 @@ function removeByName(list, name) {
   if (index !== -1) {
     result.splice(index, 1);
   }
-
+  
   return result;
 }
 
@@ -72,17 +72,17 @@ function makeCounter(currentCount) {
 /**
  * This function create async timeout and return unixtime like timer Id
  * @param time {number}
- * @returns {number}
+ * @returns {Promise<number}
  */
 
 function getAsyncTimerId(time) {
-  let timerId;
-  setTimeout(() => {
-    timerId = Math.floor(Date.now() / 1000)
-  }, time);
-
-  return timerId
-};
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const timerId = Math.floor(Date.now() / 1000);
+      resolve(timerId);
+    }, time);
+  });
+}
 
 /**
  * This function return promise and multiply paraments
