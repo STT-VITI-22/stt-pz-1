@@ -1,3 +1,6 @@
+const assert = require('chai').assert;
+const { sum, pow, removeByName } = require('./lib');
+
 describe('Test suite for testing lib.js', () => {
   describe('Test suite for testing sum function', () => {
     it('should return sum of two numbers', () => {
@@ -7,7 +10,7 @@ describe('Test suite for testing lib.js', () => {
     });
 
     it('should return NaN if one parameter is skipped', () => {
-      assert.equal(sum(1), NaN)
+      assert.isNaN(sum(1), NaN)
     });
 
 
@@ -20,19 +23,22 @@ describe('Test suite for testing lib.js', () => {
 
   describe('Test suite for testing pow function', () => {
     it('should raising x to the n power', () => {
-      // Write your code here
+      assert.equal(pow(2,2), 4)
+      assert.equal(pow(3,2), 9)
+      assert.equal(pow(4,4), 256)
     });
 
 
   });
 
   describe('Test suite for testing removeByName function', () => {
+    var list = ["Water","super gra","Nikita","chocolate skin"]
     it('should remove some element from array', () => {
-      // Write your code here
+      assert.deepEqual(removeByName(list, "Water"), list.filter(name => name != "Water"))
     });
 
     it('should not remove element from array', () => {
-      // Write your code here
+      assert.deepEqual(removeByName(list, "BANANA!!!!"), list)
     });
   });
 });
