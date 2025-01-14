@@ -31,7 +31,7 @@ function pow(x, n) {
  */
 function factorial(n) {
   return n ? n * factorial(n - 1) : 1;
-};
+}
 
 /**
  * This function calculate Fibonacci sequence
@@ -76,13 +76,13 @@ function makeCounter(currentCount) {
  */
 
 function getAsyncTimerId(time) {
-  let timerId;
-  setTimeout(() => {
-    timerId = Math.floor(Date.now() / 1000)
-  }, time);
-
-  return timerId
-};
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const timerId = Math.floor(Date.now() / 1000);
+      resolve(timerId);
+    }, time);
+  });
+}
 
 /**
  * This function return promise and multiply paraments
@@ -126,3 +126,15 @@ function httpGet(url) {
 
 }
 
+if (typeof module !== "undefined") {
+  module.exports = {
+    sum,
+    pow,
+    factorial,
+    fibonacci,
+    removeByName,
+    makeCounter,
+    getAsyncTimerId,
+    asyncMultiply
+  };
+}

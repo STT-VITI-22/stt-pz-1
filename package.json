@@ -1,0 +1,24 @@
+{
+  "name": "stt-pz-1-sementsov",
+  "version": "1.0.0",
+  "description": "> In this lesson is introduction to auto testing in javascript.\r > Mocha Simple, flexible, fun JavaScript test framework for Node.js & The Browser\r > Chai is a BDD / TDD assertion library for node and the browser that can be delightfully paired with any javascript testing framework.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EuuGenee/stt-pz-1-Sementsov.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EuuGenee/stt-pz-1-Sementsov/issues"
+  },
+  "homepage": "https://github.com/EuuGenee/stt-pz-1-Sementsov#readme",
+  "devDependencies": {
+    "chai": "^5.1.2",
+    "mocha": "^11.0.1"
+  }
+}
