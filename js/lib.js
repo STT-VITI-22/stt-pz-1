@@ -72,16 +72,16 @@ function makeCounter(currentCount) {
 /**
  * This function create async timeout and return unixtime like timer Id
  * @param time {number}
- * @returns {number}
+ * @returns {Promise<number}
  */
 
 function getAsyncTimerId(time) {
-  let timerId;
-  setTimeout(() => {
-    timerId = Math.floor(Date.now() / 1000)
-  }, time);
-
-  return timerId
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const timerId = Math.floor(Date.now() / 1000);
+      resolve(timerId);
+    }, time);
+  });
 };
 
 /**
@@ -126,3 +126,8 @@ function httpGet(url) {
 
 }
 
+module.exports = {
+  sum,
+  pow,
+  removeByName
+};
