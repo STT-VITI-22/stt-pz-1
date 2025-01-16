@@ -1,0 +1,16 @@
+{
+  "months": [
+    {
+      "id": 1,
+      "name": "December"
+    },
+    {
+      "id": 2,
+      "name": "January"
+    },
+    {
+      "id": 3,
+      "name": "February"
+    }
+  ]
+}

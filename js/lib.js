@@ -15,13 +15,7 @@ function sum(a, b) {
  * @returns {number}
  */
 function pow(x, n) {
-  let result = 1;
-
-  for (let i = 0; i < n; i++) {
-    result *= x;
-  }
-
-  return result;
+  return Math.pow(x, n)
 }
 
 /**
@@ -30,6 +24,9 @@ function pow(x, n) {
  * @returns {number}
  */
 function factorial(n) {
+  if (!Number.isInteger(n)) throw new Error("Given number must be an integer")
+  if (n === 0) return 1
+  if (n < 0) throw new Error("Given number can't be smaller than 0")
   return n ? n * factorial(n - 1) : 1;
 };
 
@@ -39,7 +36,12 @@ function factorial(n) {
  * @returns {*|number}
  */
 function fibonacci(n) {
-  return (n > 2) ? fibonacci(n - 1) + fibonacci(n - 2) : 1;
+  if (!Number.isInteger(n)) throw new Error('Fibonacci number must be an integer');
+  if (n < 0) throw new Error('Fibonacci must be greater than 0');
+  if (n === 0) return 0
+  if (n === 1) return 1
+
+  return  fibonacci(n - 1) + fibonacci(n - 2);
 }
 
 /**
@@ -72,17 +74,21 @@ function makeCounter(currentCount) {
 /**
  * This function create async timeout and return unixtime like timer Id
  * @param time {number}
- * @returns {number}
+ * @returns {Promise<number>}
  */
 
-function getAsyncTimerId(time) {
-  let timerId;
-  setTimeout(() => {
-    timerId = Math.floor(Date.now() / 1000)
-  }, time);
+async function getAsyncTimerId(time) {
+  return new Promise((resolve, reject) => {
+    if (Number.isNaN(Number(time))) {
+      reject(new Error("Given time must bu a number"));
+    }
 
-  return timerId
-};
+    setTimeout(() => {
+      resolve(Math.floor(Date.now() / 1000))
+    }, time);
+  })
+
+}
 
 /**
  * This function return promise and multiply paraments
@@ -90,10 +96,17 @@ function getAsyncTimerId(time) {
  * @returns {Promise<number>}
  */
 async function asyncMultiply(x) {
+
+  if (Number.isNaN(Number(x))) {
+    return new Promise((resolve, reject) => {
+      reject(new Error("Given number can not be a string"))
+    })
+  }
+
   return new Promise(resolve => {
     setTimeout(resolve, 3000, 2 * x);
   });
-};
+}
 
 /**
  * This function create GET http request to server
@@ -101,6 +114,8 @@ async function asyncMultiply(x) {
  * @returns {Promise<unknown>}
  */
 function httpGet(url) {
+
+  const XMLHttpRequest = require("xhr2");
 
   return new Promise(function (resolve, reject) {
 
@@ -123,8 +138,7 @@ function httpGet(url) {
 
     xhr.send();
   });
-
 }
 
-module.exports = {sum}
+module.exports = {sum, pow, asyncMultiply, factorial, getAsyncTimerId, fibonacci, httpGet, makeCounter, removeByName}
 
