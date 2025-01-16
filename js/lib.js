@@ -126,3 +126,5 @@ function httpGet(url) {
 
 }
 
+module.exports = {sum}
+

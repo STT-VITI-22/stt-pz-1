@@ -16,7 +16,7 @@
     "url": "https://github.com/Brazilianian/stt-pz-1/issues"
   },
   "homepage": "https://github.com/Brazilianian/stt-pz-1#readme",
-  "dependencies": {
+  "devDependencies": {
     "mocha": "^11.0.1"
   }
 }

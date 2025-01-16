@@ -1,3 +1,6 @@
+const assert = require('assert');
+const {sum} = require("./lib");
+
 describe('Test suite for testing lib.js', () => {
   describe('Test suite for testing sum function', () => {
     it('should return sum of two numbers', () => {
@@ -9,7 +12,6 @@ describe('Test suite for testing lib.js', () => {
     it('should return NaN if one parameter is skipped', () => {
       assert.equal(sum(1), NaN)
     });
-
 
     it('should convert string to number if input parameters is string', () => {
       assert.equal(sum('5', '1'), 6)
