@@ -1,3 +1,13 @@
+import * as mocha from 'mocha';
+import * as chai from 'chai';
+import * as lib from '../lib.js';
+import {pow, removeByName} from "../lib.js";
+
+const {assert} = chai;
+const {it, describe} = mocha;
+const {sum} = lib;
+const list = ['dog', 'cat', 'horse'];
+
 describe('Test suite for testing lib.js', () => {
   describe('Test suite for testing sum function', () => {
     it('should return sum of two numbers', () => {
@@ -7,7 +17,7 @@ describe('Test suite for testing lib.js', () => {
     });
 
     it('should return NaN if one parameter is skipped', () => {
-      assert.equal(sum(1), NaN)
+      assert.isNaN(sum(1))
     });
 
 
@@ -20,19 +30,26 @@ describe('Test suite for testing lib.js', () => {
 
   describe('Test suite for testing pow function', () => {
     it('should raising x to the n power', () => {
-      // Write your code here
+      assert.equal(pow(1, 2), 1);
+      assert.equal(pow('2', '3'), 8);
+      assert.equal(pow('3'), 1);
     });
-
-
   });
 
   describe('Test suite for testing removeByName function', () => {
     it('should remove some element from array', () => {
-      // Write your code here
+
+      let resultList = ['cat', 'horse'];
+      assert.deepEqual(removeByName(list, 'dog'), resultList);
     });
 
     it('should not remove element from array', () => {
-      // Write your code here
+      assert.deepEqual(removeByName(list, 'parrot'), list);
+    });
+
+    it('should throw TypeError on undefined parameter (Due to api error in service for example :) ) ' +
+      'element from array', () => {
+      assert.throws(() => removeByName(undefined), TypeError);
     });
   });
 });
