@@ -49,14 +49,9 @@ function fibonacci(n) {
  * @returns {string[]}
  */
 function removeByName(list, name) {
-  let result = [...list]
-  let index = result.indexOf(name);
-  if (index !== -1) {
-    result.splice(index, 1);
-  }
-
-  return result;
+  return list.filter(obj => obj.name !== name);
 }
+
 
 /**
  * This function create counter
