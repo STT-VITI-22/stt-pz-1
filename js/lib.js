@@ -126,3 +126,15 @@ function httpGet(url) {
 
 }
 
+export {
+  sum,
+  pow,
+  factorial,
+  fibonacci,
+  removeByName,
+  makeCounter,
+  getAsyncTimerId,
+  asyncMultiply,
+  httpGet
+};
+
