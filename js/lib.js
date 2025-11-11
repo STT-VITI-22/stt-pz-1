@@ -1,3 +1,4 @@
+
 /**
  * This function must add two numbers and return sum of numbers
  * @param a {number|string}
@@ -16,7 +17,14 @@ function sum(a, b) {
  */
 function pow(x, n) {
   let result = 1;
-
+  // Якщо степінь від'ємна
+  if (n < 0) {
+    for (let i = 0; i < -n; i++) {
+      result *= x;
+    }
+    return 1 / result;
+  }
+  // Якщо степінь додатна або нульова
   for (let i = 0; i < n; i++) {
     result *= x;
   }
@@ -76,13 +84,14 @@ function makeCounter(currentCount) {
  */
 
 function getAsyncTimerId(time) {
-  let timerId;
-  setTimeout(() => {
-    timerId = Math.floor(Date.now() / 1000)
-  }, time);
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const timerId = Math.floor(Date.now() / 1000);
+      resolve(timerId);
+    }, time);
+  });
+}
 
-  return timerId
-};
 
 /**
  * This function return promise and multiply paraments
@@ -126,3 +135,45 @@ function httpGet(url) {
 
 }
 
+// Тестована функція
+function wgs84ToMGRS(latitude, longitude, accuracy = 5) {
+  if (latitude < -90 || latitude > 90 || longitude < -180 || longitude > 180) {
+    throw new Error("Некоректні координати WGS84");
+  }
+  return mgrs.forward([longitude, latitude], accuracy);
+}
+
+// lib.js
+
+/**
+ * Convert lat/lon to MGRS using the global mgrs library.
+ * @param {[number, number]} ll [longitude, latitude]
+ * @param {number} [accuracy=5]
+ * @returns {string}
+ */
+function convertWgs84ToMGRS(ll, accuracy) {
+  accuracy = typeof accuracy === 'number' ? accuracy : 5; // default accuracy 1m
+
+  if (!Array.isArray(ll)) {
+    throw new TypeError('forward did not receive an array');
+  }
+
+  if (typeof ll[0] === 'string' || typeof ll[1] === 'string') {
+    throw new TypeError('forward received an array of strings, but it only accepts an array of numbers.');
+  }
+
+  const [ lon, lat ] = ll;
+  if (lon < -180 || lon > 180) {
+    throw new TypeError(`forward received an invalid longitude of ${lon}`);
+  }
+  if (lat < -90 || lat > 90) {
+    throw new TypeError(`forward received an invalid latitude of ${lat}`);
+  }
+
+  if (lat < -80 || lat > 84) {
+    throw new TypeError(`forward received a latitude of ${lat}, but this library does not support conversions of points in polar regions below 80°S and above 84°N`);
+  }
+
+  // Використовуємо mgrs (підключений через CDN у index.html)
+  return mgrs.forward([lon, lat], accuracy);
+}
