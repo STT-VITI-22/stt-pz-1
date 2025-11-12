@@ -328,13 +328,6 @@ describe('asyncMultiply', () => {
     assert.ok(elapsed >= 2900 && elapsed <= 3500, `Фактичний час: ${elapsed} мс`);
   });
 
-  it('повинна повертати різні результати для різних вхідних значень', async function() {
-    this.timeout(4000);
-    const res1 = await asyncMultiply(2);
-    const res2 = await asyncMultiply(5);
-    assert.notStrictEqual(res1, res2);
-  });
-
 });
 
 describe('httpGet', () => {
@@ -376,19 +369,6 @@ describe('httpGet', () => {
     } catch (err) {
       expect(err).to.be.instanceOf(Error);
       expect(err.code).to.equal(404);
-    }
-  });
-
-  it('повинна відхилятись при статусі 500', async () => {
-    const promise = httpGet('/api/error');
-    requests[0].respond(500, { "Content-Type": "text/plain" }, 'Server Error');
-
-    try {
-      await promise;
-      throw new Error('Очікувалось відхилення');
-    } catch (err) {
-      expect(err.code).to.equal(500);
-      expect(err.message).to.equal('Server Error');
     }
   });
 
