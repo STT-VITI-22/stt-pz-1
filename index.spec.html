@@ -1,29 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <title>Mocha Tests</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="https://unpkg.com/mocha/mocha.css"/>
-
-  <script src="https://unpkg.com/chai/chai.js"></script>
-  <script src="https://unpkg.com/mocha/mocha.js"></script>
-  <script>
-    var assert = chai.assert;
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mocha Unit Tests - stt-pz-1</title>
+    
+    <!-- Mocha CSS для відображення результатів тестів -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/10.2.0/mocha.min.css">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+        
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+        }
+    </style>
 </head>
 <body>
-<div id="mocha"></div>
-
-
-<script class="mocha-init">
-  mocha.setup('bdd');
-  mocha.checkLeaks();
-</script>
-<script src="./js/lib.js"></script>
-<script src="./js/lib.spec.js"></script>
-<script class="mocha-exec">
-  mocha.run();
-</script>
+    <!-- Заголовок -->
+    <div class="header">
+        <h1>🧪 Mocha Unit Tests</h1>
+        <p>Testing lib.js functions with BDD/TDD approach</p>
+    </div>
+    
+    <!-- Контейнер для результатів Mocha -->
+    <div id="mocha"></div>
+    
+    <!-- Mocha JavaScript Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/10.2.0/mocha.min.js"></script>
+    
+    <!-- Chai Assertion Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/4.3.10/chai.min.js"></script>
+    
+    <!-- Налаштування Mocha -->
+    <script>
+        // Встановлюємо BDD стиль для тестів (describe, it, expect)
+        mocha.setup('bdd');
+        
+        // Встановлюємо максимальний час виконання тесту (2 секунди)
+        mocha.timeout(2000);
+    </script>
+    
+    <!-- Наш код, який тестуємо -->
+    <script src="js/lib.js"></script>
+    
+    <!-- Наші тести -->
+    <script src="js/lib.spec.js"></script>
+    
+    <!-- Запуск тестів -->
+    <script>
+        // Запускаємо всі тести після завантаження сторінки
+        mocha.run();
+    </script>
 </body>
 </html>
