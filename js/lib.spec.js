@@ -27,7 +27,7 @@ describe('Test suite for testing lib.js', () => {
     });
   });
 
-  // нові тести для sum: невалідні строки, float, великі числа
+  //sum: невалідні строки, float, великі числа
   describe('Test suite for sum function with invalid and float inputs', () => {
     it('should return NaN for non-numeric strings', () => {
       assert.isNaN(sum('abc', 5));
@@ -61,7 +61,6 @@ describe('Test suite for testing lib.js', () => {
     });
   });
 
-  // додаткові тести для pow
   describe('Test suite for testing pow function additional cases', () => {
     it('should return x when power is 1', () => {
       assert.equal(pow(5, 1), 5);
@@ -89,7 +88,6 @@ describe('Test suite for testing lib.js', () => {
     });
   });
 
-  // додаткові edge-кейси для removeByName
   describe('Test suite for removeByName with edge cases', () => {
     it('should remove only first occurrence of name', () => {
       const names = ['Alice', 'Bob', 'Bob', 'Charlie'];
@@ -122,7 +120,6 @@ describe('Test suite for testing lib.js', () => {
     });
   });
 
-  // додаткові тести для factorial
   describe('Test suite for factorial additional cases', () => {
     it('should calculate factorial of 10', () => {
       assert.equal(factorial(10), 3628800);
@@ -139,7 +136,6 @@ describe('Test suite for testing lib.js', () => {
     });
   });
 
-  // додаткові тести для fibonacci
   describe('Test suite for fibonacci with additional small values', () => {
     it('should calculate fibonacci for 3 and 4', () => {
       assert.equal(fibonacci(3), 2);
@@ -183,7 +179,6 @@ describe('Test suite for testing lib.js', () => {
     });
   });
 
-  // додаткові тести для makeCounter
   describe('Test suite for makeCounter robustness', () => {
     it('should work correctly after many calls', () => {
       const counter = makeCounter(0);
@@ -234,7 +229,6 @@ describe('Test suite for testing lib.js', () => {
     });
   });
 
-  // додаткові тести для asyncMultiply
   describe('Test suite for asyncMultiply with edge values', () => {
     it('should return 0 when x is 0', async function () {
       this.timeout(4000);
@@ -254,7 +248,6 @@ describe('Test suite for testing lib.js', () => {
     let originalXHR;
     let lastRequest;
 
-    // Створюємо фейковий XMLHttpRequest
     beforeEach(() => {
       originalXHR = XMLHttpRequest;
 
@@ -277,7 +270,6 @@ describe('Test suite for testing lib.js', () => {
       };
 
       FakeXHR.prototype.send = function () {
-        // Нічого не робимо — відповідь симулюємо самі в тесті
       };
 
       XMLHttpRequest = FakeXHR;
@@ -303,7 +295,6 @@ describe('Test suite for testing lib.js', () => {
         }
       }).catch(done);
 
-      // Емуляція успішної відповіді
       lastRequest.status = 200;
       lastRequest.statusText = 'OK';
       lastRequest.response = 'OK';
@@ -325,7 +316,6 @@ describe('Test suite for testing lib.js', () => {
         }
       });
 
-      // Емуляція 404
       lastRequest.status = 404;
       lastRequest.statusText = 'Not Found';
       lastRequest.response = 'Not Found';
@@ -347,7 +337,6 @@ describe('Test suite for testing lib.js', () => {
         }
       });
 
-      // Емуляція network error
       lastRequest.onerror();
     });
   });
