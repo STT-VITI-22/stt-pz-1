@@ -340,5 +340,46 @@ describe('Test suite for testing lib.js', () => {
       lastRequest.onerror();
     });
   });
+  describe('Test suite for newFUnction', () => {
+    it(' return element at specified index', () => {
+      const array = ['a', 'b', 'c', 'd'];
+      assert.equal(newFUnction(array, 0), 'a');
+      assert.equal(newFUnction(array, 2), 'c');
+    });
+
+    it('should return undefined for out-of-bounds index', () => {
+      const array = ['a', 'b', 'c', 'd'];
+      assert.isUndefined(newFUnction(array, 4));
+      assert.isUndefined(newFUnction(array, -1));
+    });
+
+    it('should return the only element if index is 0', () => {
+      const array = ['single'];
+      assert.equal(newFUnction(array, 0), 'single');
+    });
+
+    it('should return undefined for empty array', () => {
+      const array = [];
+     assert.isUndefined(newFUnction(array, 0));
+    });
+
+    it('should correctly handle arrays with different data types', () => {
+      const array = [1, true, null, { key: 'value' }];
+      assert.equal(newFUnction(array, 0), 1);
+      assert.equal(newFUnction(array, 1), true);
+      assert.deepEqual(newFUnction(array, 3), { key: 'value' });
+   });
+
+   it('should return undefined for very large index', () => {
+      const array = ['a', 'b'];
+      assert.isUndefined(newFUnction(array, 999));
+   });
+
+   it('should not modify the original array', () => {
+      const array = ['a', 'b', 'c'];
+      newFUnction(array, 1);
+      assert.deepEqual(array, ['a', 'b', 'c']);
+  });
+  });
 
 });
