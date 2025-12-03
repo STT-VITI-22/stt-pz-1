@@ -123,6 +123,8 @@ function httpGet(url) {
 
     xhr.send();
   });
-
+}
+function newFUnction(array, index){
+  return array[index]
 }
 
