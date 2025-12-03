@@ -122,6 +122,63 @@ function httpGet(url) {
     };
 
     xhr.send();
+    
   });
 
+function getElement(array, index, fallback = null) {
+  // Перевірка типів
+  if (!Array.isArray(array)) {
+    throw new TypeError("Перший параметр має бути масивом");
+  }
+
+  if (typeof index !== "number" || Number.isNaN(index)) {
+    throw new TypeError("Індекс має бути числом");
+  }
+
+  // Негативні індекси: -1 → останній елемент
+  const realIndex = index < 0 ? array.length + index : index;
+
+  // Якщо індекс виходить за межі — повертаємо fallback
+  if (realIndex < 0 || realIndex >= array.length) {
+    return fallback;
+  }
+
+  return array[realIndex];
+  
+}
+
+}
+
+/**
+ * Повертає елемент масиву за індексом.
+ * Підтримує негативні індекси та fallback-значення.
+ *
+ * @param {Array} array - масив.
+ * @param {number} index - індекс (може бути негативним).
+ * @param {*} fallback - значення, що повернеться, якщо індекс некоректний.
+ * @returns {*} елемент масиву або fallback.
+ */
+function getElement(array, index, fallback = null) {
+  // Перевірка типів
+  if (!Array.isArray(array)) {
+    throw new TypeError("Перший параметр має бути масивом");
+  }
+
+  if (typeof index !== "number" || Number.isNaN(index)) {
+    throw new TypeError("Індекс має бути числом");
+  }
+
+  // Негативні індекси: -1 → останній елемент
+  const realIndex = index < 0 ? array.length + index : index;
+
+  // Якщо індекс виходить за межі — повертаємо fallback
+  if (realIndex < 0 || realIndex >= array.length) {
+    return fallback;
+  }
+
+  return array[realIndex];
+}
+function domashovSum(a, b)
+ {
+  return Number(a) + Number(b)
 }

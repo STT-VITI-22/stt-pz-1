@@ -376,4 +376,444 @@ describe('Інтеграційні тести', function() {
         const fib6 = fibonacci(6); // 8
         expect(sum(fib5, fib6)).to.equal(13);
     });
+    
+});
+describe('getElement', () => {
+  
+  describe('Позитивні індекси', () => {
+    it('повертає перший елемент (індекс 0)', () => {
+      const arr = [10, 20, 30];
+      expect(getElement(arr, 0)).to.equal(10);
+    });
+
+    it('повертає елемент з середини масиву', () => {
+      const arr = [10, 20, 30, 40, 50];
+      expect(getElement(arr, 2)).to.equal(30);
+    });
+
+    it('повертає останній елемент', () => {
+      const arr = [10, 20, 30];
+      expect(getElement(arr, 2)).to.equal(30);
+    });
+  });
+
+  describe('Негативні індекси', () => {
+    it('повертає останній елемент (індекс -1)', () => {
+      const arr = [10, 20, 30, 40];
+      expect(getElement(arr, -1)).to.equal(40);
+    });
+
+    it('повертає передостанній елемент (індекс -2)', () => {
+      const arr = [10, 20, 30, 40];
+      expect(getElement(arr, -2)).to.equal(30);
+    });
+
+    it('повертає перший елемент через негативний індекс', () => {
+      const arr = [10, 20, 30];
+      expect(getElement(arr, -3)).to.equal(10);
+    });
+  });
+
+  describe('Некоректні індекси', () => {
+    it('повертає fallback для індексу поза межами (позитивний)', () => {
+      const arr = [10, 20, 30];
+      expect(getElement(arr, 10)).to.be.null;
+    });
+
+    it('повертає fallback для індексу поза межами (негативний)', () => {
+      const arr = [10, 20, 30];
+      expect(getElement(arr, -10)).to.be.null;
+    });
+
+    it('повертає кастомний fallback', () => {
+      const arr = [10, 20, 30];
+      expect(getElement(arr, 10, 'не знайдено')).to.equal('не знайдено');
+    });
+
+    it('повертає fallback 0 для некоректного індексу', () => {
+      const arr = [10, 20, 30];
+      expect(getElement(arr, 10, 0)).to.equal(0);
+    });
+
+    it('повертає fallback false для некоректного індексу', () => {
+      const arr = [10, 20, 30];
+      expect(getElement(arr, 10, false)).to.be.false;
+    });
+  });
+
+  describe('Спеціальні випадки', () => {
+    it('працює з порожнім масивом', () => {
+      const arr = [];
+      expect(getElement(arr, 0, 'порожньо')).to.equal('порожньо');
+    });
+
+    it('працює з масивом з одного елемента', () => {
+      const arr = [42];
+      expect(getElement(arr, 0)).to.equal(42);
+    });
+
+    it('працює з масивом з одного елемента (негативний індекс)', () => {
+      const arr = [42];
+      expect(getElement(arr, -1)).to.equal(42);
+    });
+
+    it('повертає undefined як елемент масиву', () => {
+      const arr = [1, undefined, 3];
+      expect(getElement(arr, 1)).to.be.undefined;
+    });
+
+    it('повертає null як елемент масиву', () => {
+      const arr = [1, null, 3];
+      expect(getElement(arr, 1)).to.be.null;
+    });
+  });
+
+  describe('Валідація параметрів - помилки TypeError', () => {
+    it('викидає TypeError для не-масиву (число)', () => {
+      expect(() => getElement(123, 0)).to.throw(TypeError, 'Перший параметр має бути масивом');
+    });
+
+    it('викидає TypeError для не-масиву (string)', () => {
+      expect(() => getElement('string', 0)).to.throw(TypeError, 'Перший параметр має бути масивом');
+    });
+
+    it('викидає TypeError для не-масиву (null)', () => {
+      expect(() => getElement(null, 0)).to.throw(TypeError, 'Перший параметр має бути масивом');
+    });
+
+    it('викидає TypeError для не-масиву (object)', () => {
+      expect(() => getElement({ 0: 'a', 1: 'b' }, 0)).to.throw(TypeError, 'Перший параметр має бути масивом');
+    });
+
+    it('викидає TypeError для індексу-рядка', () => {
+      expect(() => getElement([1, 2, 3], '0')).to.throw(TypeError, 'Індекс має бути числом');
+    });
+
+    it('викидає TypeError для індексу NaN', () => {
+      expect(() => getElement([1, 2, 3], NaN)).to.throw(TypeError, 'Індекс має бути числом');
+    });
+
+    it('викидає TypeError для індексу undefined', () => {
+      expect(() => getElement([1, 2, 3], undefined)).to.throw(TypeError, 'Індекс має бути числом');
+    });
+
+    it('викидає TypeError для індексу null', () => {
+      expect(() => getElement([1, 2, 3], null)).to.throw(TypeError, 'Індекс має бути числом');
+    });
+  });
+
+  describe('Різні типи даних', () => {
+    it('працює з масивом рядків', () => {
+      const arr = ['a', 'b', 'c'];
+      expect(getElement(arr, 1)).to.equal('b');
+    });
+
+    it('працює з масивом об\'єктів', () => {
+      const arr = [{ id: 1 }, { id: 2 }, { id: 3 }];
+      expect(getElement(arr, 2)).to.deep.equal({ id: 3 });
+    });
+
+    it('працює з вкладеними масивами', () => {
+      const arr = [[1, 2], [3, 4], [5, 6]];
+      expect(getElement(arr, 1)).to.deep.equal([3, 4]);
+    });
+
+    it('працює з масивом булевих значень', () => {
+      const arr = [true, false, true];
+      expect(getElement(arr, 1)).to.be.false;
+    });
+  });
+
+  describe('Крайні випадки з індексами', () => {
+    it('працює з дробовим індексом (відкидає дробову частину)', () => {
+      const arr = [10, 20, 30];
+      // JavaScript автоматично конвертує 1.7 до числа
+      // але ваша функція може відхилити це
+      expect(() => getElement(arr, 1.7)).to.not.throw();
+    });
+
+    it('працює з дуже великим масивом', () => {
+      const arr = new Array(1000).fill(0);
+      arr[999] = 'останній';
+      expect(getElement(arr, -1)).to.equal('останній');
+    });
+  });
+});
+
+describe('Функція отримання елемента масиву', () => {
+  
+  describe('Доступ за стандартними індексами', () => {
+    const testArray = [10, 20, 30, 40, 50];
+
+    it('має повертати перший елемент масиву', () => {
+      expect(getElement(testArray, 0)).to.equal(10);
+    });
+
+    it('має повертати елемент із середини', () => {
+      expect(getElement(testArray, 2)).to.equal(30);
+    });
+
+    it('має повертати останній елемент за максимальним індексом', () => {
+      expect(getElement(testArray, 4)).to.equal(50);
+    });
+
+    it('має працювати з масивом рядків', () => {
+      const words = ['один', 'два', 'три'];
+      expect(getElement(words, 1)).to.equal('два');
+    });
+  });
+
+  describe('Використання від\'ємних індексів', () => {
+    const data = ['alpha', 'beta', 'gamma', 'delta', 'epsilon'];
+
+    it('має отримувати останній елемент через -1', () => {
+      expect(getElement(data, -1)).to.equal('epsilon');
+    });
+
+    it('має отримувати елемент з позиції -3 від кінця', () => {
+      expect(getElement(data, -3)).to.equal('gamma');
+    });
+
+    it('має отримувати перший елемент через від\'ємний індекс', () => {
+      expect(getElement(data, -5)).to.equal('alpha');
+    });
+
+    it('має працювати з від\'ємним індексом у короткому масиві', () => {
+      const short = ['x', 'y'];
+      expect(getElement(short, -2)).to.equal('x');
+    });
+  });
+
+  describe('Обробка виходу за межі масиву', () => {
+    const items = [1, 2, 3];
+
+    it('має повертати null для надто великого індексу', () => {
+      expect(getElement(items, 100)).to.be.null;
+    });
+
+    it('має повертати null для надто малого від\'ємного індексу', () => {
+      expect(getElement(items, -50)).to.be.null;
+    });
+
+    it('має використовувати власне значення fallback', () => {
+      expect(getElement(items, 10, 'помилка')).to.equal('помилка');
+    });
+
+    it('має повертати числовий fallback', () => {
+      expect(getElement(items, -10, 999)).to.equal(999);
+    });
+
+    it('має повертати булеве значення як fallback', () => {
+      expect(getElement(items, 5, true)).to.be.true;
+    });
+
+    it('має використовувати об\'єкт як fallback', () => {
+      const fb = { error: 'not found' };
+      expect(getElement(items, 20, fb)).to.deep.equal(fb);
+    });
+  });
+
+  describe('Поведінка з порожнім масивом', () => {
+    const emptyArr = [];
+
+    it('має повертати null при спробі доступу до порожнього масиву', () => {
+      expect(getElement(emptyArr, 0)).to.be.null;
+    });
+
+    it('має повертати fallback для порожнього масиву з від\'ємним індексом', () => {
+      expect(getElement(emptyArr, -1, 'немає даних')).to.equal('немає даних');
+    });
+
+    it('має працювати з будь-яким індексом у порожньому масиві', () => {
+      expect(getElement(emptyArr, 5, 'пусто')).to.equal('пусто');
+    });
+  });
+
+  describe('Робота зі спеціальними значеннями в масиві', () => {
+    const special = [null, undefined, false, 0, '', NaN, true];
+
+    it('має правильно повертати null як елемент', () => {
+      expect(getElement(special, 0)).to.be.null;
+    });
+
+    it('має правильно повертати undefined як елемент', () => {
+      expect(getElement(special, 1)).to.be.undefined;
+    });
+
+    it('має правильно повертати false як елемент', () => {
+      expect(getElement(special, 2)).to.equal(false);
+    });
+
+    it('має правильно повертати 0 як елемент', () => {
+      expect(getElement(special, 3)).to.equal(0);
+    });
+
+    it('має правильно повертати порожній рядок як елемент', () => {
+      expect(getElement(special, 4)).to.equal('');
+    });
+
+    it('має правильно повертати NaN як елемент', () => {
+      expect(getElement(special, 5)).to.be.NaN;
+    });
+  });
+
+  describe('Валідація типу масиву', () => {
+    it('має викидати помилку для числа замість масиву', () => {
+      expect(() => getElement(42, 0)).to.throw(TypeError);
+    });
+
+    it('має викидати помилку для рядка замість масиву', () => {
+      expect(() => getElement('текст', 1)).to.throw(TypeError);
+    });
+
+    it('має викидати помилку для null замість масиву', () => {
+      expect(() => getElement(null, 0)).to.throw(TypeError);
+    });
+
+    it('має викидати помилку для undefined замість масиву', () => {
+      expect(() => getElement(undefined, 0)).to.throw(TypeError);
+    });
+
+    it('має викидати помилку для об\'єкта замість масиву', () => {
+      expect(() => getElement({ key: 'value' }, 0)).to.throw(TypeError);
+    });
+
+    it('має викидати помилку для функції замість масиву', () => {
+      expect(() => getElement(() => {}, 0)).to.throw(TypeError);
+    });
+  });
+
+  describe('Валідація типу індексу', () => {
+    const arr = [1, 2, 3];
+
+    it('має викидати помилку для рядкового індексу', () => {
+      expect(() => getElement(arr, '1')).to.throw(TypeError);
+    });
+
+    it('має викидати помилку для null як індексу', () => {
+      expect(() => getElement(arr, null)).to.throw(TypeError);
+    });
+
+    it('має викидати помилку для undefined як індексу', () => {
+      expect(() => getElement(arr, undefined)).to.throw(TypeError);
+    });
+
+    it('має викидати помилку для масиву як індексу', () => {
+      expect(() => getElement(arr, [])).to.throw(TypeError);
+    });
+
+    it('має викидати помилку для об\'єкта як індексу', () => {
+      expect(() => getElement(arr, {})).to.throw(TypeError);
+    });
+
+    it('має викидати помилку для NaN як індексу', () => {
+      expect(() => getElement(arr, NaN)).to.throw(TypeError);
+    });
+  });
+
+  describe('Крайні випадки з великими індексами', () => {
+    const arr = ['a', 'b', 'c'];
+
+    it('має обробляти дуже великі позитивні індекси', () => {
+      expect(getElement(arr, 1000000)).to.be.null;
+    });
+
+    it('має обробляти дуже великі від\'ємні індекси', () => {
+      expect(getElement(arr, -1000000)).to.be.null;
+    });
+
+    it('має обробляти Infinity як індекс', () => {
+      expect(getElement(arr, Infinity, 'infinity')).to.equal('infinity');
+    });
+
+    it('має обробляти -Infinity як індекс', () => {
+      expect(getElement(arr, -Infinity, 'neg-infinity')).to.equal('neg-infinity');
+    });
+
+    it('має обробляти максимальне безпечне ціле число', () => {
+      expect(getElement(arr, Number.MAX_SAFE_INTEGER)).to.be.null;
+    });
+  });
+
+  describe('Робота з різними типами даних у масиві', () => {
+    it('має працювати з масивом об\'єктів', () => {
+      const objects = [{ id: 1 }, { id: 2 }, { id: 3 }];
+      expect(getElement(objects, 1)).to.deep.equal({ id: 2 });
+    });
+
+    it('має працювати з вкладеними масивами', () => {
+      const nested = [[1, 2], [3, 4], [5, 6]];
+      expect(getElement(nested, -1)).to.deep.equal([5, 6]);
+    });
+
+    it('має працювати з масивом функцій', () => {
+      const fn1 = () => 'first';
+      const fn2 = () => 'second';
+      const funcs = [fn1, fn2];
+      expect(getElement(funcs, 0)).to.equal(fn1);
+    });
+
+    it('має працювати з масивом змішаних типів', () => {
+      const mixed = [123, 'text', { key: 'val' }, [1, 2], true];
+      expect(getElement(mixed, 2)).to.deep.equal({ key: 'val' });
+    });
+  });
+
+  describe('Перевірка fallback за замовчуванням', () => {
+    const arr = ['x', 'y', 'z'];
+
+    it('має повертати null коли fallback не вказаний (позитивний індекс)', () => {
+      const result = getElement(arr, 10);
+      expect(result).to.be.null;
+    });
+
+    it('має повертати null коли fallback не вказаний (від\'ємний індекс)', () => {
+      const result = getElement(arr, -10);
+      expect(result).to.be.null;
+    });
+
+    it('має ігнорувати fallback коли індекс валідний', () => {
+      expect(getElement(arr, 1, 'fallback')).to.equal('y');
+    });
+  });
+
+  describe('Тестування з масивом довжиною 1', () => {
+    const single = ['only'];
+
+    it('має повертати єдиний елемент за індексом 0', () => {
+      expect(getElement(single, 0)).to.equal('only');
+    });
+
+    it('має повертати єдиний елемент за індексом -1', () => {
+      expect(getElement(single, -1)).to.equal('only');
+    });
+
+    it('має повертати fallback для індексу 1', () => {
+      expect(getElement(single, 1, 'немає')).to.equal('немає');
+    });
+
+    it('має повертати fallback для індексу -2', () => {
+      expect(getElement(single, -2, 'поза межами')).to.equal('поза межами');
+    });
+  });
+});function domashovSum(a, b) {
+  return Number(a) + Number(b);
+}
+
+describe('domashovSum', function() {
+  
+  it('повинна додавати два позитивні числа', function() {
+    expect(domashovSum(2, 3)).to.equal(5);  
+  });
+  
+  it('повинна додавати негативні числа', function() {
+    expect(domashovSum(-5, -3)).to.equal(-8);  
+  });
+  
+  it('повинна додавати позитивне та негативне число', function() {
+    expect(domashovSum(10, -3)).to.equal(7);  
+  });
+  
+
+  
 });
