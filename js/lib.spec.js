@@ -143,13 +143,11 @@ describe('Test suite for testing lib.js', () => {
 
   describe('Test suite for testing getAsyncTimerId function', () => {
     it('should return undefined synchronously because timerId is set inside setTimeout', () => {
-      // Known defect: the value is assigned after the function has already returned
       assert.isUndefined(getAsyncTimerId(10))
     });
   });
 
   describe('Test suite for testing asyncMultiply function', function () {
-    // asyncMultiply resolves after 3 seconds, default Mocha timeout is 2 seconds
     this.timeout(4000);
 
     it('should return a Promise', () => {
@@ -174,7 +172,6 @@ describe('Test suite for testing lib.js', () => {
   });
 
   describe('Test suite for testing httpGet function', () => {
-    // Fake XMLHttpRequest, so tests do not depend on network
     const OriginalXHR = window.XMLHttpRequest;
     let fakeResponse;
     let lastRequest;
